@@ -22,10 +22,10 @@ server.get('/api', (req, res) => {
 	res.send('Build signal accepted!');
 });
 
-//setInterval(() => {
-//  wss.clients.forEach((client) => {
-//    client.send(new Date().toTimeString());
-//  });
-//}, 1000);
+setInterval(() => {
+    wss.clients.forEach((client) => {
+        client.send(new Date().toTimeString());
+    });
+}, 1000);
 
 server.listen(PORT, () => console.log(`Listening on ${ PORT }`));
