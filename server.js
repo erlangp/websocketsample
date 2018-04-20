@@ -7,8 +7,7 @@ const path = require('path');
 const PORT = process.env.PORT || 3000;
 const INDEX = path.join(__dirname, 'index.html');
 
-const server = express().listen(PORT, () => console.log(`Listening on ${ PORT }`));
-
+const server = express()
 const wss = new SocketServer({ server });
 
 wss.on('connection', (ws) => {
@@ -28,3 +27,5 @@ server.get('/api/build/e', (req, res) => {
 //    client.send(new Date().toTimeString());
 //  });
 //}, 1000);
+
+server.listen(PORT, () => console.log(`Listening on ${ PORT }`));
