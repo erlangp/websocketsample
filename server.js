@@ -1,35 +1,30 @@
 'use strict';
 
 const express = require('express');
-const SocketServer = require('ws').Server;
+const WebSocket = require('ws');
 const path = require('path');
+
+const wss = new WebSocket.Server({ port: 8080 });
+var s = [];
+wss.on('connection', function connection(ws) {
+  s.push(ws);
+  ws.on('message', function incoming(message) {
+    console.log('received: %s', message);
+  });
+  ws.send('something');
+});
 
 const PORT = process.env.PORT || 3000;
 const INDEX = path.join(__dirname, 'index.html');
 
-const server = express()
-const wss = new SocketServer({ server });
-
-server.get('/', (req, res) => {
+const app = express();
+app.get('/', (req, res) => {
     res.send('Hello World!');
 });
-
-server.get('/api', (req, res) => {
+app.get('/api', (req, res) => {
 //    wss.clients.forEach((client) => {
 //        client.send(new Date().toTimeString());
 //    });
     res.send('Build signal accepted!');
 });
-
-setInterval(() => {
-    wss.clients.forEach((client) => {
-        client.send(new Date().toTimeString());
-    });
-}, 1000);
-
-server.listen(PORT, () => console.log(`Listening on ${ PORT }`));
-
-wss.on('connection', (ws) => {
-    console.log('Client connected');
-    ws.on('close', () => console.log('Client disconnected'));
-});
+app.listen(PORT, () => console.log(`Listening on ${ PORT }`));
