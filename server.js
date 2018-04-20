@@ -15,6 +15,9 @@ wss.on('connection', (ws) => {
   ws.on('close', () => console.log('Client disconnected'));
 });
 
+server.get('/', (req, res) => {
+  res.send('Hello World!')
+})
 server.get('/api', (req, res) => {
 	wss.clients.forEach((client) => {
 		client.send(new Date().toTimeString());
