@@ -15,11 +15,11 @@ wss.on('connection', (ws) => {
   ws.on('close', () => console.log('Client disconnected'));
 });
 
-server.get('/api/build/e', (req, res) => {
-	res.send('Build signal accepted!');
-		wss.clients.forEach((client) => {
+server.get('/api', (req, res) => {
+	wss.clients.forEach((client) => {
 		client.send(new Date().toTimeString());
     });
+	res.send('Build signal accepted!');
 });
 
 //setInterval(() => {
