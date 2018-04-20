@@ -5,6 +5,7 @@ var WebSocket = require('ws');
 var path = require('path');
 
 var PORT = process.env.PORT || 3000;
+PORT = 3000;
 var INDEX = path.join(__dirname, 'index.html');
 
 var app = express();
@@ -21,7 +22,7 @@ app.listen(PORT, function () {
   console.log('Ready');
 });
 
-var wss = new WebSocket.Server({httpServer: app});
+var wss = new WebSocket.Server({port: 4000});
 wss.on('connection', function connection(ws) {
     ws.on('message', function incoming(message) {
         console.log('received: %s', message);
