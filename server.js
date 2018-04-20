@@ -15,10 +15,10 @@ server.get('/', (req, res) => {
 });
 
 server.get('/api', (req, res) => {
-	wss.clients.forEach((client) => {
-		client.send(new Date().toTimeString());
-    });
-	res.send('Build signal accepted!');
+//    wss.clients.forEach((client) => {
+//        client.send(new Date().toTimeString());
+//    });
+    res.send('Build signal accepted!');
 });
 
 setInterval(() => {
