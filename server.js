@@ -17,7 +17,7 @@ app.get('/api', (req, res) => {
 //    });
     res.send('Build signal accepted!');
 });
-app.listen(PORT, () => console.log(`Listening on ${ PORT }`));
+//app.listen(PORT, () => console.log(`Listening on ${ PORT }`));
 
 const wss = new WebSocket.Server({ port: PORT });
 wss.on('connection', function connection(ws) {
