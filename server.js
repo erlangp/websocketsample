@@ -28,11 +28,28 @@ var server = http.createServer(app);
 var wss = new WebSocket.Server({
     server: server
 });
+
 wss.on('connection', (ws) => {
-    ws.on('message', (incomingMessage) => {
-        console.log('Message received: %s', incomingMessage);
+    console.log('onConnected: ');
+    
+    ws.on('open', () => {
+        console.log('onOpen: ');
+        ws.send(Date.now());
     });
-    ws.send('Something');
+    
+    ws.on('message', (message) => {
+        console.log('onMessage: incomingMessage= %s', message);
+        ws.send(Date.now());
+    });
+    
+    ws.on('close', () => {
+        console.log('onClose: ');
+        ws.send(Date.now());
+    });
+
+    ws.send('Something', (error) => {
+        console.log('onSendError: ');
+    });
 });
 
 server.listen(PORT, () => {

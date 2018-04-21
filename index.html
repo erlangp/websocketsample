@@ -1,17 +1,20 @@
 <!doctype html>
 <html>
   <body>
-    <p id='server-time'></p>
     <script>
       var HOST = location.origin.replace(/^http/, 'ws')
       var ws = new WebSocket(HOST);
 
-      ws.onopen = function onOpen(event) {
-        console.log('onOpen: event=', event);
+      ws.onopen = function onOpen() {
+        console.log('onOpen: ');
       };
       
       ws.onmessage = function onMessage(event) {
         console.log('onMessage: event=', event);
+      };
+      
+      ws.onclose = function onClose() {
+        console.log('onClose: ');
       };
       
       //ws.close();
