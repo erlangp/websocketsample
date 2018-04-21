@@ -14,7 +14,7 @@ app.get('/', (req, res) => {
 });
 app.get('/api', (req, res) => {
     wss.clients.forEach((client) => {
-        client.send(client);
+        client.send(JSON.stringify(client));
 //        client.send(client, 'Amazing ' + new Date().toTimeString());
     });
     res.send('api. Hello World!' + ' :' + PORT);
