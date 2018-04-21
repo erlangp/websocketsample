@@ -10,13 +10,13 @@ var INDEX = path.join(__dirname, 'index.html');
 
 var app = express();
 app.get('/', function (req, res) {
-    res.send('Root Hello World!' + ' ' + PORT);
+    res.send('root Hello World!' + ' :' + PORT);
 });
 app.get('/api', function (req, res) {
     // wss.clients.forEach((client) => {
         // client.send(new Date().toTimeString());
     // });
-    res.send('API Build signal accepted!');
+    res.send('api Build Signal Accepted!' + ' :' + PORT);
 });
 // app.listen(PORT, function () {
   // console.log('Ready');
