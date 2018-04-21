@@ -14,9 +14,9 @@ app.get('/', (req, res) => {
 });
 app.get('/api', (req, res) => {
     wss.clients.forEach((client) => {
-        client.send(new Date().toTimeString());
+        client.send('Amazing ' + new Date().toTimeString());
     });
-    res.send('api. Build Signal Accepted!' + ' :' + PORT);
+    res.send('api. Hello World!' + ' :' + PORT);
 });
 // app.listen(PORT, function () {
   // console.log('App Ready!');
