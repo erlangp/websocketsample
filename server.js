@@ -10,7 +10,7 @@ var INDEX = path.join(__dirname, 'index.html');
 
 var app = express();
 app.get('/', function (req, res) {
-    res.send('Root Hello World!');
+    res.send('Root Hello World!' + ' ' + PORT);
 });
 app.get('/api', function (req, res) {
     // wss.clients.forEach((client) => {
