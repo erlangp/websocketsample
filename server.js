@@ -22,13 +22,7 @@ app.get('/api', function (req, res) {
   // console.log('Ready');
 // });
 
-var server = http.createServer(function (req, res) {
-    // process HTTP request. Since we're writing just WebSockets
-    // server we don't have to implement anything.
-});
-server.listen(PORT, function () {
-    console.log('Ready');
-});
+var server = http.createServer(app);
 
 var wss = new WebSocket.Server({server: server});
 wss.on('connection', function connection(ws) {
@@ -36,4 +30,8 @@ wss.on('connection', function connection(ws) {
         console.log('received: %s', message);
     });
     ws.send('something');
+});
+
+server.listen(PORT, function () {
+    console.log('Ready');
 });
