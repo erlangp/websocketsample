@@ -13,9 +13,9 @@ app.get('/', function (req, res) {
     res.send('root Hello World!' + ' :' + PORT);
 });
 app.get('/api', function (req, res) {
-    // wss.clients.forEach((client) => {
-        // client.send(new Date().toTimeString());
-    // });
+    wss.clients.forEach((client) => {
+        client.send(new Date().toTimeString());
+    });
     res.send('api Build Signal Accepted!' + ' :' + PORT);
 });
 // app.listen(PORT, function () {
