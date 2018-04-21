@@ -1,17 +1,16 @@
 {
-  "name": "websockets-vanilla",
+  "name": "erlangp_websocketsample",
   "version": "1.0.0",
   "engines": {
     "node": "8.11.1"
   },
-  "description": "",
+  "description": "WebSocket sample",
   "main": "index.js",
   "scripts": {
     "start": "node server.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": ["http", "express", "ws", "websocket"],
+  "author": "erlangp",
   "dependencies": {
     "express": "4.16.3",
     "ws": "5.1.1"

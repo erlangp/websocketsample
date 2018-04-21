@@ -13,6 +13,7 @@ app.get('/', (req, res) => {
     res.send('Root' + ' :' + PORT);
 });
 app.get('/api/do-build', (req, res) => {
+    // Broadcast
     try {
         if (wss) {
             if (wss.clients) {
@@ -29,7 +30,7 @@ app.get('/api/do-build', (req, res) => {
     } catch (er) {
         //
     }
-    res.send('Api Build' + ' :' + PORT);
+    res.send('Do Build!' + ' :' + PORT);
 });
 //app.listen(PORT, function () {
 //    console.log('App Ready!');
@@ -55,8 +56,15 @@ wss.on('connection', (ws) => {
         console.log('onClose: ');
     });
 
-    ws.send('Something', (error) => {
-        console.log('onSendError: ');
+    //ws.send('Welcome!', (error) => {
+    //    console.log('onSend: error=%s', error);
+    //});
+    
+    ws.send(JSON.stringify({
+        code: "WELCOME", 
+        time: new Date().toTimeString()
+    }), (error) => {
+        console.log('onSend: error=%s', error);
     });
 });
 
